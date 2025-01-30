@@ -1,5 +1,3 @@
-// index.ts
-
 import * as tf from '@tensorflow/tfjs';
 import { generateData } from './data/data.create';
 import { preprocessData } from './data/data.process';
@@ -22,6 +20,7 @@ async function trainModel(): Promise<void> {
 }
 
 // Step 3: Detect Anomalies
+
 async function detectAnomalies(): Promise<void> {
   const predictions: tf.Tensor = model.predict(normalizedData) as tf.Tensor;
 
@@ -29,7 +28,10 @@ async function detectAnomalies(): Promise<void> {
 
   const anomalyThreshold = 0.1;
 
-  error.arraySync().forEach((err: number, i: number) => {
+  // Ensure error is treated as a flat array of numbers
+  const errorArray: number[] = error.arraySync() as number[];
+
+  errorArray.forEach((err: number, i: number) => {
     if (err > anomalyThreshold) {
       console.log(`Anomaly detected at index ${i} with error: ${err}`);
     }
