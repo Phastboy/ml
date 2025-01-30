@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/phastboy/ml#readme",
   "dependencies": {
-    "@tensorflow/tfjs": "^4.22.0"
+    "@tensorflow/tfjs": "^4.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   }
 }
